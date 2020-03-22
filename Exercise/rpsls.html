@@ -21,7 +21,6 @@
         });
     </script>
 </head>    
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 html {
   box-sizing: border-box;
@@ -62,18 +61,11 @@ html {
 .title {
   color: grey;
 }
-
+    
 .button_set {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: palevioletred;
-  text-align: center;
-  cursor: pointer;
-  width: 30%;
-  margin: 1px 1px 1px 45px;
+   position: absolute;
+   bottom:100pxx;
+   left:100px;
 }
     
 .button {
@@ -84,9 +76,10 @@ html {
   color: white;
   background-color: royalblue;
   text-align: center;
+  font-size: 25px;
   cursor: pointer;
   width: 30%;
-  margin: 1px 1px 1px 45px;
+  margin: 1px 1px 1px 1px;
 }
     
 .my_text
@@ -98,6 +91,59 @@ html {
 .button:hover {
   background-color: green;
 }
+.wrapper {
+    padding: 3px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.wrapper button {
+    height: 100%;
+    width: 100%;
+}
+    
+.smaller_wrapper {
+    padding: 3px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.smaller_wrapper button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: royalblue;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  width: 50%;
+  margin: 1px 1px 1px 1px;
+}
+    
+.btn-group button {
+  background-color: royalblue; /* Green background */
+  border: 1px solid black; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer;/* Pointer/hand icon */
+  text-align: center;
+  font-size: 25px;
+  width: 60%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  text-align: center;
+  background-color: #3e8e41;
+}
+    
 </style>
 <body>
     <div class="w3-container w3-green">
@@ -109,9 +155,9 @@ html {
             <h3 class="mbsc-card-subtitle">Image Capture</h3>
             <div id="center">
                 <img src="img/cat_right_mask.png" width="400" height="400">
-                <div class="button_set">
-                    <ons-button type="button" id="playButton">start</ons-button>
-                </div>
+                <div class="wrapper">
+                    <ons-button id="playButton">start</ons-button>
+                </div> 
             </div> 
             <div id="video-player-div" style="display:none;">   
                 <video autoplay playsinline muted id="wc" width="400" height="400"></video>
@@ -123,19 +169,21 @@ html {
         </div>
     </div>  
     
-    <div class="card" style="width: 34rem;">
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            </ul>
+    <div class="card" style="width: 29rem;">
+        <div class="smaller_wrapper">
+            <button id="train" onclick="doTraining()" >Train Network</button>
+        </div> 
     </div>
-	<button type="button" id="train" onclick="doTraining()" >Train Network</button>
-	<div id="dummy">Once training is complete, click 'Start Predicting' to see predictions, and 'Stop Predicting' to end. Once you are happy with your model, click 'Download Model' to save the model to your local disk.</div>
-	<button type="button" id="startPredicting" onclick="startPredicting()" >Start Predicting</button>
-	<button type="button" id="stopPredicting" onclick="stopPredicting()" >Stop Predicting</button>
-    <button type="button" id="saveModel" onclick="saveModel()" >Download Model</button>
-	<div id="prediction"></div>
+    <div class="card" style="width: 29rem;">
+        <div id="dummy">Once training is complete, click 'Start Predicting' to see predictions, and 'Stop Predicting' to end. Once you are happy with your model, click 'Download Model' to save the model to your local disk.</div>
+        <div class="btn-group">
+        <button type="button" id="startPredicting" onclick="startPredicting()" >Start Predicting</button>
+        <button type="button" id="stopPredicting" onclick="stopPredicting()" >Stop Predicting</button>
+        <button type="button" id="saveModel" onclick="saveModel()" >Download Model</button>
+        </div>
+        <div id="prediction"></div>
+    </div>
+
 </body>
 <script src="index_exercise.js"></script>
 </html>
