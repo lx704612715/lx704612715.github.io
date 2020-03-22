@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Hide Image button and show video</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#playButton').click( function () {
+                $('#center').hide();
+                $('#video-player-div').show();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="center">
+<img src="img/cat_right_mask.png" width="100" height="100">
+<button type="button" id="playButton">Train Network</button>
+</div>
+
+<div id="video-player-div" style="display:none;">
+    <video autoplay playsinline muted id="wc" width="760" height="480"></video>
+</div>
+
+</body>
+</html>

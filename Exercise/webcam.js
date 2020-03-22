@@ -87,7 +87,7 @@ class Webcam {
 
   async setup() {
     return new Promise((resolve, reject) => {
-      navigator.getUserMedia = navigator.getUserMedia ||
+          navigator.getUserMedia = navigator.getUserMedia ||
           navigator.webkitGetUserMedia || navigator.mozGetUserMedia ||
           navigator.msGetUserMedia;
       if (navigator.getUserMedia) {

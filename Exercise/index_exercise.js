@@ -2,7 +2,7 @@ let mobilenet;
 let model;
 const webcam = new Webcam(document.getElementById('wc'));
 const dataset = new RPSDataset();
-var rockSamples=0, paperSamples=0, scissorsSamples=0, spockSamples=0, lizardSamples=0;
+var correctsamples=0, wrongsamples=0;
 let isPredicting = false;
 
 async function loadMobilenet() {
@@ -13,7 +13,7 @@ async function loadMobilenet() {
 
 async function train() {
   dataset.ys = null;
-  dataset.encodeLabels(5);
+  dataset.encodeLabels(2);
   // In the space below create a neural network that can classify hand gestures
   // corresponding to rock, paper, scissors, lizard, and spock. The first layer
   // of your network should be a flatten layer that takes as input the output
@@ -26,7 +26,7 @@ async function train() {
     layers: [
         tf.layers.flatten({inputShape: mobilenet.outputs[0].shape.slice(1)}),
         tf.layers.dense({units:100, activation: 'relu'}),
-        tf.layers.dense({units:5, activation: 'softmax'})
+        tf.layers.dense({units:2, activation: 'softmax'})
     ]
   });
     
@@ -53,24 +53,13 @@ async function train() {
 function handleButton(elem){
 	switch(elem.id){
 		case "0":
-			rockSamples++;
-			document.getElementById("rocksamples").innerText = "Rock samples:" + rockSamples;
+			correctsamples++;
+			document.getElementById("correctsamples").innerText = "Correct samples:" + correctsamples;
 			break;
 		case "1":
-			paperSamples++;
-			document.getElementById("papersamples").innerText = "Paper samples:" + paperSamples;
-			break;
-		case "2":
-			scissorsSamples++;
-			document.getElementById("scissorssamples").innerText = "Scissors samples:" + scissorsSamples;
-			break;  
-		case "3":
-			spockSamples++;
-			document.getElementById("spocksamples").innerText = "Spock samples:" + spockSamples;
-			break;
-        case "4":
-            lizardSamples++;
-            document.getElementById("lizardsamples").innerText = "Lizard samples" + lizardSamples;     
+			wrongsamples++;
+			document.getElementById("wrongsamples").innerText = "Wrong samples:" + wrongsamples;
+			break;   
 	}
 	label = parseInt(elem.id);
 	const img = webcam.capture();
@@ -90,24 +79,15 @@ async function predict() {
     var predictionText = "";
     switch(classId){
 		case 0:
-			predictionText = "I see Rock";
+			predictionText = "Ou! It's perfect!";
 			break;
 		case 1:
-			predictionText = "I see Paper";
+			predictionText = "Dude, It's not correct!";
 			break;
-		case 2:
-			predictionText = "I see Scissors";
-			break;
-		case 3:
-			predictionText = "I see Spock";
-			break;
-        case 4:
-            predictionText = "I see Lizard";
             
 	}
 	document.getElementById("prediction").innerText = predictionText;
 			
-    
     predictedClass.dispose();
     await tf.nextFrame();
   }

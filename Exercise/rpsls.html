@@ -1,25 +1,135 @@
+<!DOCTYPE html>
 <html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <head>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
-<script src="webcam.js"></script>
-<script src="rps-dataset.js"></script>
-</head>
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+    <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+    <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"> </script>
+    <script src="webcam.js"></script>
+    <script src="rps-dataset.js"></script>
+    <title>Hide Image button and show video</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#playButton').click( function () {
+                $('#center').hide();
+                $('#video-player-div').show();
+            });
+        });
+    </script>
+</head>    
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 33.3%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 255, 0.2);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button_set {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: palevioletred;
+  text-align: center;
+  cursor: pointer;
+  width: 30%;
+  margin: 1px 1px 1px 45px;
+}
+    
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: royalblue;
+  text-align: center;
+  cursor: pointer;
+  width: 30%;
+  margin: 1px 1px 1px 45px;
+}
+    
+.my_text
+{
+    font-family:    Arial, Helvetica, sans-serif;
+    font-size:      18px;
+}
+
+.button:hover {
+  background-color: green;
+}
+</style>
 <body>
-	<div>
-		<div>
-			<video autoplay playsinline muted id="wc" width="224" height="224"></video>
-		</div>
-	</div>
-	<button type="button" id="0" onclick="handleButton(this)" >Rock</button>
-	<button type="button" id="1" onclick="handleButton(this)" >Paper</button>
-	<button type="button" id="2" onclick="handleButton(this)" >Scissors</button>
-	<button type="button" id="3" onclick="handleButton(this)" >Spock</button>
-	<button type="button" id="4" onclick="handleButton(this)" >Lizard</button>
-	<div id="rocksamples">Rock Samples:</div>
-	<div id="papersamples">Paper Samples:</div>
-	<div id="scissorssamples">Scissors Samples:</div>
-	<div id="spocksamples">Spock Samples:</div>
-	<div id="lizardsamples">Lizard Samples:</div>
+    <div class="w3-container w3-green">
+        <h1>Teach AI to wear a mask</h1> 
+        <p>Resize this responsive page!</p> 
+    </div>
+    <div class="card" style="width: 29rem;">
+        <div class="card-body">
+            <h3 class="mbsc-card-subtitle">Image Capture</h3>
+            <div id="center">
+                <img src="img/cat_right_mask.png" width="400" height="400">
+                <div class="button_set">
+                    <ons-button type="button" id="playButton">start</ons-button>
+                </div>
+            </div> 
+            <div id="video-player-div" style="display:none;">   
+                <video autoplay playsinline muted id="wc" width="400" height="400"></video>
+                <ons-button type="button" id="0" onclick="handleButton(this)" >correct</ons-button>
+                <ons-button type="button" id="1" onclick="handleButton(this)" >wrong</ons-button>
+            </div>
+            <div class="my_text" id="correctsamples">Correct Samples:</div>
+            <div class="my_text" id="wrongsamples">Wrong Samples:</div>
+        </div>
+    </div>  
+    
+    <div class="card" style="width: 34rem;">
+            <ul class="list-group list-group-flush">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Dapibus ac facilisis in</li>
+            <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+    </div>
 	<button type="button" id="train" onclick="doTraining()" >Train Network</button>
 	<div id="dummy">Once training is complete, click 'Start Predicting' to see predictions, and 'Stop Predicting' to end. Once you are happy with your model, click 'Download Model' to save the model to your local disk.</div>
 	<button type="button" id="startPredicting" onclick="startPredicting()" >Start Predicting</button>
@@ -27,6 +137,5 @@
     <button type="button" id="saveModel" onclick="saveModel()" >Download Model</button>
 	<div id="prediction"></div>
 </body>
-
 <script src="index_exercise.js"></script>
 </html>
