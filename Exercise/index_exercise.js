@@ -79,10 +79,10 @@ async function predict() {
     var predictionText = "";
     switch(classId){
 		case 0:
-			predictionText = "Ou! It's perfect!";
+			predictionText = "Nice! It's correct!";
 			break;
 		case 1:
-			predictionText = "Dude, It's not correct!";
+			predictionText = "Dude! It's not correct!";
 			break;
             
 	}
@@ -119,7 +119,6 @@ async function init(){
 	await webcam.setup();
 	mobilenet = await loadMobilenet();
 	tf.tidy(() => mobilenet.predict(webcam.capture()));
-		
 }
 
 

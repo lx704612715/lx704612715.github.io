@@ -163,8 +163,11 @@ html {
             </div> 
             <div id="video-player-div" style="display:none;">   
                 <video autoplay playsinline muted id="wc" width="600" height="600"></video>
-                <ons-button type="button" id="0" onclick="handleButton(this)" >correct</ons-button>
-                <ons-button type="button" id="1" onclick="handleButton(this)" >wrong</ons-button>
+                <div class="my_text">
+                   <div id="dummy">Each time the button is clicked, the webcam will capture a frame and join to the training dataset.</div>
+                </div>
+                <ons-button type="button" id="0" onclick="handleButton(this)" >Correct</ons-button>
+                <ons-button type="button" id="1" onclick="handleButton(this)" >Wrong</ons-button>
             </div>
             <div class="my_text" id="correctsamples">Correct Samples:</div>
             <div class="my_text" id="wrongsamples">Wrong Samples:</div>
@@ -177,13 +180,17 @@ html {
         </div> 
     </div>
     <div class="card" style="width: 42rem;">
-        <div id="dummy">Once training is complete, click 'Start Predicting' to see predictions, and 'Stop Predicting' to end. Once you are happy with your model, click 'Download Model' to save the model to your local disk.</div>
+        <div class="my_text">
+        <div id="dummy">Once training is complete, click 'Start Predicting' to see predictions, and 'Stop Predicting' to end. Once you are happy with your model, click 'Download Model' to save the model to your logl disk.</div>
+        </div>
         <div class="btn-group" style="width:165%" >
         <button type="button" id="startPredicting" onclick="startPredicting()" >Start Predicting</button>
         <button type="button" id="stopPredicting" onclick="stopPredicting()" >Stop Predicting</button>
         <button type="button" id="saveModel" onclick="saveModel()" >Download Model</button>
         </div>
-        <div id="prediction"></div>
+        <div class="my_text">
+            <div id="prediction"></div>
+        </div>
     </div>
 
 </body>
